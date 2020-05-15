@@ -14,13 +14,19 @@ root.resizable(width=False, height=False)
 root.iconphoto(True, PhotoImage(file="/home/soumyo/PycharmProjects/Simple Weather Application/icon"))
 
 def gridForget():
+    search_btn.config(state=NORMAL)
+    root.config(bg="white")
+    entry_box.delete(0, "end")
     my_label2.grid_forget()
     my_label1.grid_forget()
     my_label3.grid_forget()
     my_label4.grid_forget()
+    clear_btn.config(state=DISABLED)
 
 
 def search():
+    clear_btn.config(state=NORMAL)
+    search_btn.config(state=DISABLED)
     global AQI
     global status
     global temp
@@ -97,16 +103,20 @@ def search():
     my_label3.grid(row=2, column=0, padx=5, columnspan=2)
 
     my_label4 = Label(root, text="Source : " + source, bg=color, fg="white")
-    my_label4.grid(row=4, column=0, sticky=W, pady=50, columnspan=2)
+    my_label4.grid(row=4, column=0, sticky=W, pady=20, padx=5, columnspan=2)
 
 
 # Creating EntryBox
-entry_box = Entry(root, font=("Arial", 15), width=30, bg="yellow", fg="black", justify=CENTER)
-entry_box.grid(row=0, column=0, pady=30, padx=15, sticky=W+E+N+S)
+entry_box = Entry(root, font=("Arial", 15), width=25, bg="yellow", fg="black", justify=CENTER)
+entry_box.grid(row=0, column=0, pady=30, padx=8, sticky=W+E+N+S)
 
 # Creating Search Button
-search_btn = Button(root, text="Search", bg="grey", fg="black", font=("Arial"), command=search)
+search_btn = Button(root, text="Search", bg="cyan", fg="black", font=("Arial"), command=search)
 search_btn.grid(row=0, column=1, pady=30, sticky=W+E+N+S)
+
+# Creating Search Button
+clear_btn = Button(root, text="Clear", bg="red", fg="white", font=("Arial"), state=DISABLED, command=gridForget)
+clear_btn.grid(row=0, column=2, pady=30, sticky=W+E+N+S)
 
 
 
